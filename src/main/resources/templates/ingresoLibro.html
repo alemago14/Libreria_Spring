@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>LibreriaWEB</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<body>
+	<h1>LibreriaWeB</h1>
+	<p th:if=${exito!=null} th:text=${exito}>
+	
+	<div th:if="${exito!=null}" class="card text-white bg-success mb-3" >
+		<div class="card-body">
+			<h5 class="card-title">Exito</h5>
+			<p class="card-text" th:text="${exito}"></p>
+		</div>
+	</div>
+	
+	<div th:if="${error!=null}" class="card text-white bg-danger mb-3" >
+		<div class="card-body">
+			<h5 class="card-title">Error</h5>
+			<p class="card-text" th:text="${error}"></p>
+		</div>
+	</div>
+	
+	<p>Ingresa un nuevo libro</p>
+	
+	
+	<form action="/nuevoLibro" method="post">
+  		<div class="form-group">
+    		<label for="exampleInputEmail1">Titulo del libro</label>
+    		<input type="text" class="form-control" id="exampleInputEmail1" name="nombre">
+  		</div>
+  		<div class="form-group">
+    		<label for="exampleInputEmail1">Año</label>
+    		<input type="number" class="form-control" id="exampleInputEmail1" name="anio">
+ 			<div class="form-group">
+    		<label for="exampleInputEmail1">ISBN</label>
+    		<input type="number" class="form-control" id="exampleInputEmail1" name="isbn">
+    		<div class="form-group">
+    		<label for="exampleInputEmail1">Cant. de ejemplares</label>
+    		<input type="number" class="form-control" id="exampleInputEmail1" name="ejemplares">
+  		</div>
+  		<div class="form-group">
+    		<label for="exampleInputEmail1">Autor</label>
+    		<input type="text" class="form-control" id="exampleInputEmail1" name="autor">
+  		</div>
+ 			<div class="form-group">
+    		<label for="exampleInputEmail1">Editorial</label>
+    		<input type="text" class="form-control" id="exampleInputEmail1" name="editorial">
+  		</div>
+  		</div>
+  		</div>
+  			<button type="submit" class="btn btn-primary">Nuevo Libro</button>
+	</form>
+	
+	<a class="btn btn-primary" th:href="@{/}" role="button">Volver</a>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>
