@@ -1,10 +1,12 @@
 package com.libreria.entidades;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.Id;
 
 @Entity
 public class Cliente {
@@ -14,13 +16,16 @@ public class Cliente {
 	@GeneratedValue(generator= "uuid")
 	@GenericGenerator(name= "uuid", strategy= "uuid2")
 	private String id;
-	
 	private String nombre;
 	private String apellido;
 	private String clave;
+	private String mail;
 	private Long dni;
 	private String telefono;
 	private Boolean alta;
+	
+	@Enumerated(EnumType.STRING)
+	private Rol rol;
 	
 	//constructores
 	public Cliente(String id, String nombre, String apellido, Long dni, String telefono, Boolean alta) {
@@ -90,6 +95,22 @@ public class Cliente {
 
 	public void setClave(String clave) {
 		this.clave = clave;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 	
 	

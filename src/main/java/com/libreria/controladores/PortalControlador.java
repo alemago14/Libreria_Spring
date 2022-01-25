@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.libreria.entidades.Libro;
 import com.libreria.servicios.AutorServicio;
+import com.libreria.servicios.ClienteServicio;
 import com.libreria.servicios.EditorialServicio;
 import com.libreria.servicios.LibroServicio;
 
@@ -28,6 +29,20 @@ public class PortalControlador {
 	@GetMapping("/ingresoLibro")
 	public String nuevoL() {
 		return "ingresoLibro.html";
+	}
+	
+	
+	@GetMapping("/login")
+	public String login(@RequestParam(required= false) String error, @RequestParam(required= false) String logout ,ModelMap modelo ) {
+		if(error != null) {
+			modelo.put("error", "Usuario o contraseña invalidos");
+		}
+		
+		if(logout != null) {
+			modelo.put("logout", "Ha finalizado la sesion");
+		}
+		
+		return "login.html";
 	}
 	
 	@Autowired
@@ -98,6 +113,22 @@ public class PortalControlador {
 		modelo.addAttribute("listaL", libros);
 		
 		return "listaLibros.html";
+	}
+	
+	@GetMapping("/registro")
+	public String registro() {
+		
+		return "registro.html";
+	}
+	
+	@Autowired
+	public ClienteServicio clienteServ;
+	
+	@PostMapping("/registrar")
+	public String registrar(@RequestParam String nombre, @RequestParam String apellido, @RequestParam Long dni, @RequestParam String telefono, @RequestParam String mail, @RequestParam String clave1,@RequestParam String clave2) {
+		
+		System.out.println(nombre+" "+ apellido + clave1);
+		return "registro.html";
 	}
 	
 }

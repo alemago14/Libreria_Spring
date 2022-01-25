@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Libreria - LogIn</title>
+</head>
+<body>
+	<h1>Log In de usuario</h1>
+	
+	<form action="/logincheck" method="post">
+	<p th:if="${error != null}" th:text="${error}" style="color:red"></p>
+	<p th:if="${logout != null}" th:text="${logout}" style="color:red"></p>
+		<label>Mail: </label>
+		<input type="text" name="username">
+		<label>Contraseña: </label>
+		<input type="password" name="password">
+		<br/><button type="submit">Ingresar</button>
+	</form>
+</body>
+</html>
