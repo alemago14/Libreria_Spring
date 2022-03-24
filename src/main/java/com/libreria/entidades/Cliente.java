@@ -5,8 +5,11 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.libreria.enumeraciones.Rol;
 
 @Entity
 public class Cliente {
@@ -23,6 +26,8 @@ public class Cliente {
 	private Long dni;
 	private String telefono;
 	private Boolean alta;
+	@OneToOne
+	private Foto foto;
 	
 	@Enumerated(EnumType.STRING)
 	private Rol rol;
@@ -111,6 +116,14 @@ public class Cliente {
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
+	}
+
+	public Foto getFoto() {
+		return foto;
+	}
+
+	public void setFoto(Foto foto) {
+		this.foto = foto;
 	}
 	
 	

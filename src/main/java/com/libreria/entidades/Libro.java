@@ -24,6 +24,8 @@ public class Libro {
 	private Autor autor;
 	@OneToOne
 	private Editorial editorial;
+	@OneToOne
+	private Foto foto;
 	
 	
 	//constructores
@@ -124,5 +126,13 @@ public class Libro {
 
 	public void setEditorial(Editorial editorial) {
 		this.editorial = editorial;
+	}
+
+	public Foto getFoto() {
+		return foto;
+	}
+
+	public void setFoto(Foto foto) {
+		this.foto = foto;
 	}
 }

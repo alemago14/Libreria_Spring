@@ -26,7 +26,7 @@
 	<p>Ingresa un nuevo libro</p>
 	
 	
-	<form action="/nuevoLibro" method="post">
+	<form action="/libro/nuevoLibro" method="post" enctype="multipart/form-data">
   		<div class="form-group">
     		<label for="exampleInputEmail1">Titulo del libro</label>
     		<input type="text" class="form-control" id="exampleInputEmail1" name="nombre">
@@ -48,6 +48,10 @@
  			<div class="form-group">
     		<label for="exampleInputEmail1">Editorial</label>
     		<input type="text" class="form-control" id="exampleInputEmail1" name="editorial">
+  		</div>
+  			<div class="form-group">
+    		<label for="exampleInputEmail1">Portada</label>
+    		<input type="file" class="form-control" id="exampleInputEmail1" name="archivo">
   		</div>
   		</div>
   		</div>

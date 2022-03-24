@@ -7,21 +7,21 @@
 </head>
 <body>
 	<h1>Modificacion Libro</h1>
-	<div th:if="${exito!=null}" class="card text-white bg-success mb-3" >
+	<div th:if="${exito != null}" class="card text-white bg-success mb-3" >
 		<div class="card-body">
 			<h5 class="card-title">Exito</h5>
 			<p class="card-text" th:text="${exito}"></p>
 		</div>
 	</div>
 	
-	<div th:if="${error!=null}" class="card text-white bg-danger mb-3" >
+	<div th:if="${error != null}" class="card text-white bg-danger mb-3" >
 		<div class="card-body">
 			<h5 class="card-title">Error</h5>
 			<p class="card-text" th:text="${error}"></p>
 		</div>
 	</div>
 	
-	<form th:action="@{/modificarL/__${libro.id}__}" method="post">
+	<form th:action="@{/libro/modificarL/__${libro.id}__}" method="post" enctype="multipart/form-data">
 	<input hidden th:value="${id}" name="id">
   		<div class="form-group">
     		<label for="exampleInputEmail1">Titulo del libro</label>
@@ -44,6 +44,10 @@
  			<div class="form-group">
     		<label for="exampleInputEmail1">Editorial</label>
     		<input th:value="${libro.editorial.nombre}" type="text" class="form-control" id="exampleInputEmail1" name="editorial">
+  		</div>
+  		<div class="form-group">
+    		<label for="exampleInputEmail1">Portada</label>
+    		<input type="file" class="form-control" id="exampleInputEmail1" name="archivo">
   		</div>
   		</div>
   		</div>

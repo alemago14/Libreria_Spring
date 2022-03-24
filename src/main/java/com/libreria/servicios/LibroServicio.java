@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.libreria.entidades.Autor;
 import com.libreria.entidades.Editorial;
+import com.libreria.entidades.Foto;
 import com.libreria.entidades.Libro;
 import com.libreria.repositorios.AutorRepositorio;
 import com.libreria.repositorios.EditorialRepositorio;
@@ -29,8 +31,11 @@ public class LibroServicio {
 	public AutorServicio autorServ;
 	public EditorialServicio ediServ;
 	
+	@Autowired
+	public FotoServicio fotoServicio;
+	
 	@Transactional
-	public void crearLibro(String nombre, Integer anio, Integer ejemplares, Long isbn, String nombreAutor, String nombreEditorial) throws Exception {
+	public void crearLibro(MultipartFile archivo, String nombre, Integer anio, Integer ejemplares, Long isbn, String nombreAutor, String nombreEditorial) throws Exception {
 		validarTodo(nombre, anio, ejemplares, isbn, nombreAutor, nombreEditorial);
 		
 		//Optional<Libro> resp = libroRepo.buscarPorNombreOp(nombre);
@@ -44,6 +49,9 @@ public class LibroServicio {
 		libro.setEjemplaresRestantes(ejemplares);
 		libro.setEjemplaresPrestados(0);
 		libro.setIsbn(isbn);
+		
+		Foto foto = fotoServicio.guardar(archivo);
+		libro.setFoto(foto);
 		
 		libroRepo.save(libro);
 		Autor autor;
@@ -78,7 +86,7 @@ public class LibroServicio {
 	}
 	
 	@Transactional
-	public void modificarLibro(String id, String nombre, Integer anio, Integer ejemplares, Long isbn, String nombreAutor, String nombreEditorial) throws Exception {
+	public void modificarLibro(MultipartFile archivo, String id, String nombre, Integer anio, Integer ejemplares, Long isbn, String nombreAutor, String nombreEditorial) throws Exception {
 		validarTodo(nombre, anio, ejemplares, isbn, nombreAutor, nombreEditorial);
 		
 		Optional<Libro> respLi = libroRepo.findById(id);
@@ -90,6 +98,14 @@ public class LibroServicio {
 			libro.setEjemplaresPrestados(0);
 			libro.setEjemplaresRestantes(ejemplares);
 			libro.setIsbn(isbn);
+			
+			String idFoto = null;
+			if(libro.getFoto() != null) {
+				idFoto = libro.getFoto().getId();
+			}
+			
+			Foto foto = fotoServicio.actualizarFoto(idFoto, archivo);
+			libro.setFoto(foto);
 			
 			libroRepo.save(libro);
 			Autor autor;

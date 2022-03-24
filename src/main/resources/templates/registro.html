@@ -6,21 +6,23 @@
 </head>
 <body>
 	<h1>Registro de Usuario</h1>
+	<p th:if=${exito!=null} th:text=${exito}>
+	<p th:if=${error!=null} th:text=${error}>
 	<form action="/registrar" method="post">
 	<label>Nombre:</label>
-	<input type="text" name="nombre">
+	<input type="text" name="nombre"/>
 	<label>Apellido:</label>
-	<input type="text" name="apellido">
+	<input type="text" name="apellido"/>
 	<label>Mail:</label>
-	<input type="email" name="mail">
-	<label>DNI:</label>
-	<input type="number" name="dni">
+	<input type="email" name="mail"/>
 	<label>Telefono:</label>
-	<input type="number" name="telefono">
+	<input type="text" name="telefono"/>
+	<label>Dni:</label>
+	<input type="number" name="dni"/>
 	<label>Clave:</label>
-	<input type="password" name="clave1">
+	<input type="password" name="clave"/>
 	<label>Repita su clave:</label>
-	<input type="password" name="clave2">
+	<input type="password" name="clave2"/>
 	<br/><button type="submit">Registrar!!</button>
 	</form>
 </body>

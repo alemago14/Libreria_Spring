@@ -1,4 +1,4 @@
-package com.libreria.entidades;
+package com.libreria.enumeraciones;
 
 public enum Rol {
 	ADMIN, USUARIO
